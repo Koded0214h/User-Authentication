@@ -44,8 +44,13 @@ a{
     justify-content: center;
     padding: 50px;
 }
-.right nav{
-    color: #FFFFFF !important;
+.right .nav p{
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 20px;
+    display: none;
 }
 .right h2, .right p{
     padding-bottom: 5px;
@@ -170,6 +175,9 @@ form button{
     .right {
         width: 100% !important; /* Make the right side take the full width */
     }
+    .right .nav p{
+        display: block;
+    }
 }
 @media(max-width: 700px) {
     .left{
@@ -177,5 +185,8 @@ form button{
     }
     .right{
         width: 100% !important;
+    }
+    .right .nav p{
+        display: block;
     }
 }

@@ -1,13 +1,14 @@
-{% extends "base.html" %}
-{% load static %}   
-
-
-{% block title %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome-free-6.7.1-web/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Sign Up</title>
-{% endblock title %}
-
-{% block content %}
-
+</head>
+<body>
+    
     <div class="container">
 
         <div class="left">
@@ -23,40 +24,31 @@
             </div>
         </div>
         <div class="right">
+            <div class="nav">
+                <p><i class="fa-solid fa-terminal"></i> Logo</p>
+            </div>
             <h2>Create an account</h2>
-            <p>Already have an account? <a href="{% url 'login' %}">Login Here</a></p>
-            <form action="" method="post" enctype="multipart/form-data">
-
-                {% csrf_token %}
-
-                <div class="profile-picture-upload">
-                    <!-- Circle Preview -->
-                    <label for="profile-picture-input" class="profile-picture-label">
-                        <img id="profile-picture-preview" src="{% static 'images/default-profile.png' %}" alt="Profile Picture">
-                    </label>
-                    
-                    <!-- Hidden File Input -->
-                    <input type="file" id="profile-picture-input" name="profile_picture" accept="image/*" hidden>
-                </div>
+            <p>Already have an account? <a href="login.html">Login Here</a></p>
+            <form action="" method="post">
                 
                 <div class="input-control">
-                    <label for="id_username">Username</label>
-                    {{ registerform.username }}
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username">
                 </div>
 
                 <div class="input-control">
-                    <label for="id_email">Email</label>
-                    {{ registerform.email }}
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
                 </div>
 
                 <div class="input-control">
-                    <label for="id_password1">Password</label>
-                    {{ registerform.password1 }}
+                    <label for="password1">Password</label>
+                    <input type="password" name="password1" id="password1">
                 </div>
 
                 <div class="input-control last">
-                    <label for="id_password2">Confirm Password</label>
-                    {{ registerform.password2 }}
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="password2" id="password2">
                 </div>
 
                 <button type="submit">Sign up</button>
@@ -83,27 +75,8 @@
             <div class="term">
                 <p class="terms">By clicking continue, you agree to our <a href="">Terms of Service</a> and <a href="">Privacy Policy.</a></p>
             </div>
-
         </div>
     </div>
 
-    <script>
-        document.getElementById('profile-picture-input').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('profile-picture-preview');
-            
-            if (file) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    preview.src = e.target.result; // Set the uploaded image as the preview
-                }
-                
-                reader.readAsDataURL(file);
-            }
-        });
-        
-    </script>
-    
-
-{% endblock content %}
+</body>
+</html>
