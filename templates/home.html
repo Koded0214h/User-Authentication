@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register & Login</title>
+    <style>
+        .image{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Welcome back {{ user.username }}</h1>
+
+    <hr>
+    <p>Email : {{ user.email }}</p>
+
+    {% if user.profile_picture %}
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="image">
+    {% else %}
+        <img src="/static/default-avatar.png" alt="Default Avatar" class="image">
+    {% endif %}
+
+
+    <hr>
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    
+
+</body>
+</html>

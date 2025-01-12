@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+</head>
+<body>
+    
+    <h1>Login Form</h1>
+
+    <p>Don't have an account? <a href="{% url 'register' %}">Login Here</a></p>
+
+    <form action="" method="post">
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li class="alert {{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% csrf_token %}
+
+        {{ loginform.as_p }}
+
+        <button type="submit">Login</button>
+    </form>
+
+</body>
+</html>

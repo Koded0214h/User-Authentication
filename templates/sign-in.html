@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+    
+{% block title %}
+    <title>Log In</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="right">
+            <h2>Welcome Back 👋</h2>
+            <p>Don't have an account? <a href="{% url 'register' %}">Signup Here</a></p>
+            <form action="" method="post">
+
+                {% csrf_token %}
+                
+                <div class="input-control">
+                    <label for="id_username">Username</label>
+                    {{ loginform.username }}
+                </div>
+
+                <div class="input-control last">
+                    <label for="id_password">Password</label>
+                    {{ loginform.password }}
+                </div>
+
+                <button type="submit">Log in</button>
+
+            </form>
+
+            <div class="or-container">
+                <hr class="left-hr">
+                <span class="or-text"> OR CONTINUE WITH </span>
+                <hr class="right-hr">
+            </div>
+
+            <div class="sign">
+                <div class="box">
+                    <i class=" icon fa-brands fa-google"></i>
+                    <a href="">Continue with Google</a>
+                </div>
+                <div class="box">
+                    <i class="icon fa-brands fa-github"></i>
+                    <a href="">Continue with Github</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="left">
+            <div class="nav">
+                <p><i class="fa-solid fa-terminal"></i> Logo</p>
+            </div>
+            <div class="footer">
+                <p class="main">
+                    “This library has saved me countless hours of work and 
+                    helped me deliver stunning designs to my clients faster than ever before.”
+                </p>
+                <p class="sub">Logan Creed</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
