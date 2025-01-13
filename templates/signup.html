@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fontawesome-free-6.7.1-web/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+    <script src="{% static 'script.js' %}"></script>
+{% endblock links %}
+    
+{% block title %}
     <title>Sign Up</title>
-</head>
-<body>
+{% endblock title %}
+
+{% block content %}
     
     <div class="container">
 
@@ -28,27 +30,29 @@
                 <p><i class="fa-solid fa-terminal"></i> Logo</p>
             </div>
             <h2>Create an account</h2>
-            <p>Already have an account? <a href="login.html">Login Here</a></p>
+            <p>Already have an account? <a href="{% url 'login' %}">Login Here</a></p>
             <form action="" method="post">
-                
-                <div class="input-control">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username">
-                </div>
+
+                {% csrf_token %}
 
                 <div class="input-control">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
-                </div>
-
-                <div class="input-control">
-                    <label for="password1">Password</label>
-                    <input type="password" name="password1" id="password1">
+                    <label for="id_username">Username</label>
+                    {{ registerform.username }}
                 </div>
 
                 <div class="input-control last">
-                    <label for="password2">Confirm Password</label>
-                    <input type="password" name="password2" id="password2">
+                    <label for="id_email">Email</label>
+                    {{ registerform.email }}
+                </div>
+
+                <div class="input-control">
+                    <label for="id_password">Password</label>
+                    {{ registerform.password1 }}
+                </div>
+
+                <div class="input-control">
+                    <label for="id_password2">Confirm Password</label>
+                    {{ registerform.password2 }}
                 </div>
 
                 <button type="submit">Sign up</button>
@@ -78,5 +82,4 @@
         </div>
     </div>
 
-</body>
-</html>
+{% endblock content %}

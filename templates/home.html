@@ -28,6 +28,10 @@
 
     <hr>
 
+    <a href="{% url 'profile' user.username %}">View Profile</a>
+
+    <hr>
+
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Logout</button>

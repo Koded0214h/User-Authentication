@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/theme.css">
+    <title>Profile {{ user_profile.username }}</title>
+    <style>
+        .image{
+            height: 50px;
+            width: 50px;
+        }
+        /* Ensure blockquotes (callouts) are styled like CKEditor */
+        .ck-content blockquote {
+            margin: 1em 0;
+            padding-left: 1em;
+            border-left: 4px solid #ccc; /* Light gray vertical line */
+            color: #666; /* Text color inside callout */
+            font-style: italic; /* Optional for a softer look */
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>{{ user_profile.username }}'s Profile</h1>
+    {% if user_profile.profile_picture %}
+        <img class="image" src="{{ user_profile.profile_picture.url }}" alt="Profile Picture">
+    {% else %}
+        <p>No profile picture uploaded.</p>
+    {% endif %}
+    <div>
+        <strong>Bio:</strong>
+        <!-- Render the bio with CKEditor styles -->
+        <div class="ck-content">
+          {{ user_profile.bio|safe }}
+        </div>
+      </div>
+    <p>Location: {{ user_profile.location }}</p>
+    {% if user.is_authenticated and user.username == user_profile.username %}
+        <a href="{% url 'edit_profile' %}">Edit Profile</a>
+    {% endif %}
+
+    <a href="{% url 'password_reset' %}">Forgot your password?</a>
+
+
+
+</body>
+</html>

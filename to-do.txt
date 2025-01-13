@@ -1,0 +1,4 @@
+User Authentication | ToDo
+
+1. Email Service for password reset, and verification code.
+2. Add form.messages to each form on the page.

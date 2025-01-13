@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'accounts',
+    'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,10 +116,24 @@ USE_I18N = True
 
 USE_TZ = True
 
+# User model
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Login and Logout URL setup
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login' 
+
+
+#CK Editor Configuration
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 'auto',
+        'extraAllowedContent': 'h1 h2 h3 p blockquote strong em; a[!href]; img[!src,alt,width,height];',
+    },
+}
 
 
 # Static files (CSS, JavaScript, Images)
@@ -131,3 +146,5 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#6d6cbb495dc34c6b13aa240c9e456fff-7113c52e-99659b84

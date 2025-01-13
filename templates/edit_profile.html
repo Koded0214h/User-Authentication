@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+</head>
+<body>
+  <h1>Edit Profile</h1>
+
+  {% if messages %}
+  <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- Bind CKEditor to bio field -->
+    {{ form.bio }}
+
+    <!-- Profile picture and location fields -->
+    {{ form.profile_picture }}
+    {{ form.location }}
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#id_bio'), {
+        toolbar: [
+          'heading', 'bold', 'italic', 'link', 'blockQuote', 'bulletedList', 'numberedList',
+          'undo', 'redo', 'alignment', 'fontSize', 'fontFamily', 'code', 'imageUpload'
+        ],
+        placeholder: 'Write your bio here...',
+        height: 400,
+        language: 'en',
+        removePlugins: ['Table'],
+        simpleUpload: {
+          uploadUrl: '/upload-image/',
+          headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+          }
+        },
+        fontSize: {
+          options: [9, 10, 11, 12, 14, 16, 18, 20, 22, 24]
+        },
+        fontFamily: {
+          options: ['default', 'Arial', 'Comic Sans MS', 'Courier New']
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+
+</body>
+</html>
